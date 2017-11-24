@@ -4,7 +4,7 @@ import datetime
 from datetime import date
 import re
 
-from nsepy import urls
+from .. import urls
 
 re_date = re.compile("([0-9]{2}\-[0-9]{2}\-[0-9]{4})")
 idx_exp = {}

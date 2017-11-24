@@ -5,7 +5,7 @@ Created on Sun Nov 15 23:12:26 2015
 @author: jerry
 """
 import requests
-from nsepy.constants import NSE_INDICES, INDEX_DERIVATIVES, DERIVATIVE_TO_INDEX
+from .constants import NSE_INDICES, INDEX_DERIVATIVES, DERIVATIVE_TO_INDEX
 import datetime
 from functools import partial
 try:
@@ -189,7 +189,7 @@ def byte_adaptor(fbuffer):
         string buffer
     """
     if six.PY3:
-        strings = fbuffer.read().decode('utf-8')
+        strings = fbuffer.read().decode('iso-8859-1')
         fbuffer = six.StringIO(strings)
         return fbuffer
     else:
@@ -204,6 +204,7 @@ def js_adaptor(buffer):
     Returns:
         string after conversion
     """
+    buffer = re.sub('null', 'None', buffer)
     buffer = re.sub('true', 'True', buffer)
     buffer = re.sub('false', 'False', buffer)
     buffer = re.sub('none', 'None', buffer)

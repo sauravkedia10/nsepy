@@ -5,10 +5,10 @@ Created on Tue Nov 24 21:25:54 2015
 @author: Swapnil Jariwala
 """
 
-from nsepy.urls import *
+from .urls import *
 import six
-from nsepy.commons import *
-from nsepy.constants import *
+from .commons import *
+from .constants import *
 from datetime import date, timedelta
 from bs4 import BeautifulSoup
 import pandas as pd

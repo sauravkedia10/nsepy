@@ -5,10 +5,10 @@ Created on Thu Nov 19 20:35:13 2015
 @author: SW274998
 """
 
-from nsepy.commons import URLFetch
+from .commons import URLFetch
 from requests import Session
 from functools import partial
-from nsepy.constants import symbol_count, symbol_list
+from .constants import symbol_count, symbol_list
 
 
 session = Session()
