@@ -47,7 +47,9 @@ def get_quote(symbol, series='EQ', instrument=None, expiry=None, option_type=Non
         res[k] = v_
     return res
 
-def get_option_chain(symbol, instrument=None, expiry=None):
+def get_option_chain(symbol, instrument="OPTSTK", expiry=None):
+    
+    """This method is incomplete"""
     symbol1 = urllib.parse.quote_plus(symbol)
     if expiry:
         expiry_str = "%02d%s%d"%(expiry.day, months[expiry.month][0:3].upper(), expiry.year)
@@ -55,4 +57,5 @@ def get_option_chain(symbol, instrument=None, expiry=None):
         expiry_str = "-"
     option_chain_url.session.headers.update({'Referer': option_chain_referer})
     r = option_chain_url(symbol1, instrument, expiry_str)
+    return r
 
