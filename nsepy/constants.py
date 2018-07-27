@@ -47,7 +47,16 @@ NSE_INDICES = ["NIFTY 50",
                "NIFTY50 VALUE 20",
                "NIFTY GROWSECT 15",
                "NIFTY50 TR 2X LEV",
-               "NIFTY50 TR 1X INV",               
+               "NIFTY50 TR 1X INV",   
+               "NIFTY PVT BANK",
+               "NIFTY MID100 FREE",
+               "NIFTY SML100 FREE",
+               "NIFTY50 EQUAL WEIGHT",
+               "NIFTY LargeMidcap 250",
+               "NIFTY MIDSMALLCAP 400",
+               "NIFTY GS 10YR",
+               "NIFTY GS 10YR CLN",
+               "Nifty 1D Rate Index"
                ]
 
 DERIVATIVE_TO_INDEX = {"NIFTY": "NIFTY 50",
