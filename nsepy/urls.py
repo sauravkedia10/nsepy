@@ -134,7 +134,17 @@ http://www.nseindia.com/content/historical/DERIVATIVES/2015/NOV/fo18NOV2015bhav.
 3.date ddMMMyyyy
 
 """
-derivative_price_list_url = URLFetchSession(url="http://www.nseindia.com/content/historical/DERIVATIVES/%s/%s/fo%sbhav.csv.zip")
+
+session2 = Session()
+headers2= {
+			'Host': 'www.nseindia.com',
+			'Referer': 'https://www.nseindia.com/products/content/derivatives/equities/archieve_fo.htm'}
+URLFetchSession2 = partial(URLFetch, session=session2,
+							headers=headers2)
+
+
+
+derivative_price_list_url = URLFetchSession2(url="http://www.nseindia.com/content/historical/DERIVATIVES/%s/%s/fo%sbhav.csv.zip")
 
 
 """
