@@ -23,6 +23,8 @@ import re
 import sys
 
 from six.moves.urllib.parse import urlparse
+from requests.adapters import HTTPAdapter
+
 
 
 def is_index(index):
@@ -132,9 +134,56 @@ class ThreadReturns(threading.Thread):
             self.result = self._target(*self._args, **self._kwargs)
 
 class URLFetch:
+    """
+    if you want to the scraping call to raise an error if it hangs beyond a
+    certain time, add a param timeout to to the url making the call eg:
+    
+    regular call:
+        derivative_price_list_url(2019, 'DEC', '05DEC2019')
+    
+    new call:
+        derivative_price_list_url(2019, 'DEC', '05DEC2019', timeout=(5,20))
+        
+    This method will extract this timeout and apply it the request and if no
+    response turns up, raise ReadTimeout error
+        ReadTimeout: HTTPSConnectionPool(host='www.nseindia.com', port=443): Read timed out. (read timeout=0.1)
+    
+    if not timeout provided, 30 secs is applied as default.
+    
+    Read more on requests timeout on page:
+        https://realpython.com/python-requests/
+    The same timeout param is being provided here.
+    
+    It can be caught using:
+        from requests.exceptions import Timeout
+        try:
+            derivative_price_list_url(2019, 'DEC', '05DEC2019', timeout=(0.01,0.01))
+        except Timeout:
+            print ('Failed!')
+            
+    We also added requests.HTTPAdapter to have max three retries on this.
+       read on: https://realpython.com/python-requests/
+       
+    Failure to get response after three times will raise ConnectTimeout Error
+    which can be caught using Timeout.
+        ConnectTimeout: HTTPConnectionPool(host='www.nseindia.com', port=80): Max retries exceeded with url: /content/historical/DERIVATIVES/2010/DEC/fo05DEC2019bhav.csv.zip?timeout=0.001 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x7fec791fd278>, 'Connection to www.nseindia.com timed out. (connect timeout=0.001)'))
+    
+    so, now we will see only ConnectTimeout error.
+    
+    Alternatively, you can add timeout in __call__ method call and not the 
+    URLFetch object straightaway.
+    
+    eg:
+        index_url="http://www.nseindia.com/homepage/Indices1.json"
+         a = URLFetch(url=index_url)(timeout=(10,10))
+        
+    HAVE ADDED A DEFAULT TIMEOUT of 20 secs and MAXTRIES of 3.
+    
+    """
+    
 
     def __init__(self, url, method='get', json=False, session=None,
-                 headers = None, proxy = None):
+                 headers=None, proxy=None):
         self.url = url
         self.method = method
         self.json = json
@@ -146,6 +195,7 @@ class URLFetch:
 
         if headers:
             self.session.headers.update(headers)
+
         if proxy:
             self.update_proxy(proxy)
         else:
@@ -160,16 +210,23 @@ class URLFetch:
         return self
 
     def __call__(self, *args, **kwargs):
+        nse_adaptor= HTTPAdapter(max_retries=3)
         u = urlparse(self.url)
         self.session.headers.update({'Host': u.hostname})
         url = self.url%(args)
+        timeout = kwargs.get('timeout', 30)
+        self.session.mount('https://www.nseindia.com', nse_adaptor)
+        self.session.mount('http://www.nseindia.com', nse_adaptor)
         if self.method == 'get':
-            return self.session.get(url, params=kwargs, proxies = self.proxy )
+            return self.session.get(url, params=kwargs, proxies=self.proxy,
+                                        timeout=timeout)
         elif self.method == 'post':
             if self.json:
-                return self.session.post(url, json=kwargs, proxies = self.proxy )
+                return self.session.post(url, json=kwargs, proxies=self.proxy,
+                                         timeout=timeout)
             else:
-                return self.session.post(url, data=kwargs, proxies = self.proxy )
+                return self.session.post(url, data=kwargs, proxies=self.proxy,
+                                         timeout=timeout)
 
     def update_proxy(self, proxy):
         self.proxy = proxy

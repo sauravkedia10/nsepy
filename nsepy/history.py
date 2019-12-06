@@ -136,6 +136,7 @@ def get_history(symbol, start, end, index=False, futures=False, option_type="",
 
 def get_history_quanta(**kwargs):
     url, params, schema, headers, scaling = validate_params(**kwargs)
+    params.update(dict(timeout=10))
     df = url_to_df(url=url,
                    params=params,
                    schema=schema,
@@ -143,6 +144,9 @@ def get_history_quanta(**kwargs):
     return df
 
 def url_to_df(url, params, schema, headers, scaling={}):
+#    print (url)
+#    print (type(url))
+#    print (params)
     resp = url(**params)
     bs = BeautifulSoup(resp.text, 'lxml')
     tp = ParseTables(soup=bs,

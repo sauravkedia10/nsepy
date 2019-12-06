@@ -27,10 +27,10 @@ def get_quote(symbol, series='EQ', instrument=None, expiry=None, option_type=Non
         expiry_str = "%02d%s%d"%(expiry.day, months[expiry.month][0:3].upper(), expiry.year)
         quote_derivative_url.session.headers.update({'Referer': eq_quote_referer.format(symbol)})
         strike_str = "{:.2f}".format(strike) if strike else "" 
-        res = quote_derivative_url(symbol1, instrument, expiry_str, option_type, strike_str)
+        res = quote_derivative_url(symbol1, instrument, expiry_str, option_type, strike_str, timeout=10)
     else:
         quote_eq_url.session.headers.update({'Referer': eq_quote_referer.format(symbol)})
-        res = quote_eq_url(symbol1, series)
+        res = quote_eq_url(symbol1, series, timeout=10)
 
     d =  json.loads(res.text)['data'][0]
     res = {}
@@ -56,6 +56,7 @@ def get_option_chain(symbol, instrument="OPTSTK", expiry=None):
     else:
         expiry_str = "-"
     option_chain_url.session.headers.update({'Referer': option_chain_referer})
-    r = option_chain_url(symbol1, instrument, expiry_str)
+    r = option_chain_url(symbol1, instrument, expiry_str, timeout=10)
+    # r needs to be decoded.
     return r
 
