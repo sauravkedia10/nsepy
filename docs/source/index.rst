@@ -139,7 +139,7 @@ Index price history
 There are currently 50+ indices maintained by NSE. You can get historical data for all of them.::
 Usage-
 
-* `symbol` - Name of the index in capital `(Refer this page for list of indices) <https://www.nseindia.com/products/content/equities/indices/historical_index_data.htm>`_
+* `symbol` - Name of the index in capital `(Refer this page for list of indices) <https://www1.nseindia.com/products/content/equities/indices/historical_index_data.htm>`_
 * `index` - Set this True for all index related operations ::
                           
     # NIFTY Next 50 index
@@ -156,7 +156,7 @@ You will observe a lot of NaN values for many indeces like 'NIFTY50 Equal wight 
 
 Index futures price history
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Out of the 60+ indices, only 7 indeces are available for derivative. (`List available here. <https://www.nseindia.com/products/content/derivatives/equities/fo_underlying_home.htm>`_)
+Out of the 60+ indices, only 7 indeces are available for derivative. (`List available here. <https://www1.nseindia1.com/products/content/derivatives/equities/fo_underlying_home.htm>`_)
 Usage-
 
 * `index` - Set True
@@ -203,7 +203,7 @@ India VIX is a volatility index which gives a measurement of market volatility b
 Missing or zero values in derivative data
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
- Although `NSE specifies <https://www.nseindia.com/products/content/derivatives/equities/contract_specifitns.htm>`_ a trading cycle of three months, most stock futures will not be traded for whole three months, rather they will be active only in the month of expiry, So you may get 0 values for days when no contracts were traded. Please deal with this situation carefully in your logic.
+ Although `NSE specifies <https://www1.nseindia.com/products/content/derivatives/equities/contract_specifitns.htm>`_ a trading cycle of three months, most stock futures will not be traded for whole three months, rather they will be active only in the month of expiry, So you may get 0 values for days when no contracts were traded. Please deal with this situation carefully in your logic.
 
 .. _get_expiry_date:
     

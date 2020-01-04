@@ -12,10 +12,10 @@ from io import StringIO, BytesIO
 from nsepy.archives import date_to_str, ThreadReturns, html_to_rows, str_to_date
 from nsepy import archives
 import sys
-PRICE_HISTORY_CSV = 'http://www.nseindia.com/content/indices/histdata/%s%s-%s.csv'
-PE_HISTORY_CSV = 'http://www.nseindia.com/content/indices/histdata/%sall%s-TO-%s.csv'
-PRICE_HISTORY = 'http://www.nseindia.com/products/dynaContent/equities/indices/historicalindices.jsp?indexType=%s&fromDate=%s&toDate=%s'
-PE_HISTORY = 'http://www.nseindia.com/products/dynaContent/equities/indices/historical_pepb.jsp?indexName=%s&fromDate=%s&toDate=%s&yield1=undefined&yield2=undefined&yield3=undefined&yield4=all'
+PRICE_HISTORY_CSV = 'http://www1.nseindia.com/content/indices/histdata/%s%s-%s.csv'
+PE_HISTORY_CSV = 'http://www1.nseindia.com/content/indices/histdata/%sall%s-TO-%s.csv'
+PRICE_HISTORY = 'http://www1.nseindia.com/products/dynaContent/equities/indices/historicalindices.jsp?indexType=%s&fromDate=%s&toDate=%s'
+PE_HISTORY = 'http://www1.nseindia.com/products/dynaContent/equities/indices/historical_pepb.jsp?indexName=%s&fromDate=%s&toDate=%s&yield1=undefined&yield2=undefined&yield3=undefined&yield4=all'
 
 def _html_to_index_df(lst):
     ''' delete top 3 rows which contain text headers'''    

@@ -44,7 +44,7 @@ sbin[[ 'VWAP', 'Turnover']].plot(secondary_y='Turnover')
     	"NIFTYMID50" or "NIFTY MIDCAP 50",
     	"NIFTYPSE" or "NIFTY PSE"
 	In addition to these there are many indices
-	For full list refer- http://www.nseindia.com/products/content/equities/indices/historical_index_data.htm
+	For full list refer- https://www1.nseindia.com/products/content/equities/indices/historical_index_data.htm
 """
 nifty = get_history(symbol="NIFTY", 
                     start=date(2015,1,1), 
