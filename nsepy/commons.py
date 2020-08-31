@@ -174,7 +174,7 @@ class URLFetch:
     URLFetch object straightaway.
     
     eg:
-        index_url="https://www1.nseindia.com/homepage/Indices1.json"
+        index_url="https://archives.nseindia.com/homepage/Indices1.json"
          a = URLFetch(url=index_url)(timeout=(10,10))
         
     HAVE ADDED A DEFAULT TIMEOUT of 20 secs and MAXTRIES of 3.
@@ -215,8 +215,8 @@ class URLFetch:
         self.session.headers.update({'Host': u.hostname})
         url = self.url%(args)
         timeout = kwargs.get('timeout', 30)
-        self.session.mount('https://www1.nseindia.com', nse_adaptor)
-        self.session.mount('http://www1.nseindia.com', nse_adaptor)
+        self.session.mount('https://archives.nseindia.com', nse_adaptor)
+        self.session.mount('http://archives.nseindia.com', nse_adaptor)
         if self.method == 'get':
             return self.session.get(url, params=kwargs, proxies=self.proxy,
                                         timeout=timeout)

@@ -18,14 +18,14 @@ headers = {
 URLFetchSession = partial(URLFetch, session=session,
 							headers=headers)
 
-NSE_SYMBOL_COUNT_URL = 'https://www1.nseindia.com/marketinfo/sym_map/symbolCount.jsp'
+NSE_SYMBOL_COUNT_URL = 'https://archives.nseindia.com/marketinfo/sym_map/symbolCount.jsp'
 
 
 
 """
 ---------------------------------EQUITY--------------------------------------
 """
-symbol_count_url = URLFetchSession(url='http://www1.nseindia.com/marketinfo/sym_map/symbolCount.jsp')
+symbol_count_url = URLFetchSession(url='http://archives.nseindia.com/marketinfo/sym_map/symbolCount.jsp')
 
 def get_symbol_count(symbol):
     try:
@@ -39,7 +39,7 @@ def get_symbol_count(symbol):
 """
 #symbol=SBIN&segmentLink=3&symbolCount=1&series=EQ&dateRange=1month&fromDate=&toDate=&dataType=PRICEVOLUMEDELIVERABLE'
 """
-equity_history_url_full = URLFetchSession(url='https://www1.nseindia.com/products/dynaContent/common/productsSymbolMapping.jsp')
+equity_history_url_full = URLFetchSession(url='https://archives.nseindia.com/products/dynaContent/common/productsSymbolMapping.jsp')
 
 """
 symbol="SBIN"
@@ -58,17 +58,17 @@ equity_history_url = partial(equity_history_url_full,
 2. MMM
 3. ddMMMyyyy
 """
-price_list_url = URLFetchSession(url='https://www1.nseindia.com/content/historical/EQUITIES/%s/%s/cm%sbhav.csv.zip')
+price_list_url = URLFetchSession(url='https://archives.nseindia.com/content/historical/EQUITIES/%s/%s/cm%sbhav.csv.zip')
 
 """
 1. ddmmyyyy
 """
-daily_volatility_url = URLFetchSession(url = 'https://www1.nseindia.com/archives/nsccl/volt/CMVOLT_%s.CSV')
+daily_volatility_url = URLFetchSession(url = 'https://archives.nseindia.com/archives/nsccl/volt/CMVOLT_%s.CSV')
 
 """
 1. ddmmyy
 """
-pr_price_list_zipped_url = URLFetchSession(url = 'https://www1.nseindia.com/archives/equities/bhavcopy/pr/PR%s.zip')
+pr_price_list_zipped_url = URLFetchSession(url = 'https://archives.nseindia.com/archives/equities/bhavcopy/pr/PR%s.zip')
 
 
 """
@@ -79,12 +79,12 @@ pr_price_list_zipped_url = URLFetchSession(url = 'https://www1.nseindia.com/arch
 2. fromDate string dd-mm-yyyy
 3. toDate string dd-mm-yyyy
 """
-index_history_url = URLFetchSession(url = 'https://www1.nseindia.com/products/dynaContent/equities/indices/historicalindices.jsp')
+index_history_url = URLFetchSession(url = 'https://archives.nseindia.com/products/dynaContent/equities/indices/historicalindices.jsp')
 
 """
 1. ddmmyyyy
 """
-index_daily_snapshot_url = URLFetchSession(url='http://www1.nseindia.com/content/indices/ind_close_all_%s.csv')
+index_daily_snapshot_url = URLFetchSession(url='http://archives.nseindia.com/content/indices/ind_close_all_%s.csv')
 """
 indexName=NIFTY%2050&fromDate=02-11-2015&toDate=19-11-2015&yield1=undefined&yield2=undefined&yield3=undefined&yield4=all
 indexName = Index name
@@ -92,23 +92,23 @@ fromDate = from date dd-mm-yyyy
 toDate = to Date dd-mm-yyyy
 """
 index_pe_history_url = partial(
-                            URLFetchSession(url='https://www1.nseindia.com/products/dynaContent/equities/indices/historical_pepb.jsp?'),
+                            URLFetchSession(url='https://archives.nseindia.com/products/dynaContent/equities/indices/historical_pepb.jsp?'),
                             yield1="undefined",
                             yield2="undefined",
                             yield3="undefined",
                             yield4="all")
 """
-https://www1.nseindia.com/products/dynaContent/equities/indices/hist_vix_data.jsp?&fromDate=01-Nov-2015&toDate=19-Nov-2015
+https://archives.nseindia.com/products/dynaContent/equities/indices/hist_vix_data.jsp?&fromDate=01-Nov-2015&toDate=19-Nov-2015
 fromDate = 'dd-Mmm-yyyy'
 toDate = 'dd-Mmm-yyyy'
 """
-index_vix_history_url = URLFetchSession(url='https://www1.nseindia.com/products/dynaContent/equities/indices/hist_vix_data.jsp')
+index_vix_history_url = URLFetchSession(url='https://archives.nseindia.com/products/dynaContent/equities/indices/hist_vix_data.jsp')
 
 """
 --------------------------DERIVATIVES---------------------------------------
 """
 
-derivative_expiry_dates_url = URLFetchSession(url='https://www1.nseindia.com/products/resources/js/foExp.js')
+derivative_expiry_dates_url = URLFetchSession(url='https://archives.nseindia.com/products/resources/js/foExp.js')
 
 
 """
@@ -124,11 +124,11 @@ segmentLink=9&
 symbolCount=
 """
 derivative_history_url = partial(
-                            URLFetchSession(url='https://www1.nseindia.com/products/dynaContent/common/productsSymbolMapping.jsp?'),
+                            URLFetchSession(url='https://archives.nseindia.com/products/dynaContent/common/productsSymbolMapping.jsp?'),
                             segmentLink=9,
                             symbolCount='')
 """
-https://www1.nseindia.com/content/historical/DERIVATIVES/2015/NOV/fo18NOV2015bhav.csv.zip
+https://archives.nseindia.com/content/historical/DERIVATIVES/2015/NOV/fo18NOV2015bhav.csv.zip
 1.year yyyy
 2.Month MMM
 3.date ddMMMyyyy
@@ -144,7 +144,7 @@ URLFetchSession2 = partial(URLFetch, session=session2,
 
 
 
-derivative_price_list_url = URLFetchSession2(url="https://www1.nseindia.com/content/historical/DERIVATIVES/%s/%s/fo%sbhav.csv.zip")
+derivative_price_list_url = URLFetchSession2(url="https://archives.nseindia.com/content/historical/DERIVATIVES/%s/%s/fo%sbhav.csv.zip")
 
 
 """
@@ -154,5 +154,5 @@ derivative_price_list_url = URLFetchSession2(url="https://www1.nseindia.com/cont
 fromDate dd-mm-yyyy (from date)
 toDate dd-mm-yyyy (to date)
 """
-rbi_rate_history_url = URLFetchSession("https://www1.nseindia.com/products/dynaContent/derivatives/currency/fxRbiRateHist.jsp")
+rbi_rate_history_url = URLFetchSession("https://archives.nseindia.com/products/dynaContent/derivatives/currency/fxRbiRateHist.jsp")
 
